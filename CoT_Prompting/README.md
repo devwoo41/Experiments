@@ -180,6 +180,46 @@ Colab Pro 단일 세션(24시간)에 충분히 끝납니다. 중간에 끊겨도
 
 > **CoT는 reasoning task에 강력하고 그 이득은 scale에 따라 커진다 (원 논문 주장 지지). 다만 Instruct-tuned 모델에서는 CoT의 emergent 임계점이 크게 낮아져, 원 논문의 GPT-3 base에서 본 극단적 kink는 last_letter 같은 OOD task에서만 깨끗이 재현된다. Self-Consistency는 만능 부스터가 아니라 "작은 모델의 noisy한 CoT를 보정"하는 한정적 도구다.**
 
+### 6-5. Deep dive — Last Letter 7B 케이스 스터디 (`notebooks/last_letter.ipynb`)
+
+가장 흥미로운 emergent 패턴을 보인 Last Letter 태스크에서 7B의 **Standard 0% → CoT 23.7%** 차이를 raw 응답 단위로 해부했습니다 (별도 self-contained 노트북).
+
+**관찰 1 — Standard가 0%인 이유는 task 자체를 못 풀어서**
+Standard 응답의 53%가 글자 수조차 못 맞춤 (`length_short` 23% + `length_long` 30%), 43%는 글자 자체가 무관 (`wrong_letters`). "Edward Cynthia Steven Mary" → 정답 `dany` 인데 `nystrom` 같은 환각 응답. 즉 한 번에 처리할 표현이 없음.
+
+**관찰 2 — CoT의 효과는 task decomposition**
+CoT 응답은 항상 `The last letter of "Betty" is "y". ... Concatenating them is "yaat".` 형태로 4단계 펼침. 모델이 "4단어 last letter + concat"을 한 번에 못 푸니 step별로 sub-problem으로 환원시켜야 작동.
+
+**관찰 3 — CoT 24% 한계의 진짜 정체: 글자별 step accuracy의 비대칭**
+
+| 글자 | step 정확도 | 비고 |
+|---|---|---|
+| y, a, n, s, e, t, k | 96~100% | 영어 단어 끝에서 강하게 발음됨 |
+| l, m | 83~91% | 중간 |
+| d | 60% | 어말 약화 가능 ("Richard") |
+| r | 38% | 영어 어말 r 약함 ("Jennifer") |
+| **h** | **17%** | **거의 묵음** ("Joseph", "Sarah") |
+| **b** | **14%** | **어말 약화** ("Robert") |
+| **w** | **0%** | **완전 묵음** ("Matthew") |
+
+→ 모델은 정확히 **영어 발음 기준의 끝소리**를 답하고 있음. "Matthew"는 `/ˈmæθ.juː/` 발음상 'w'가 들리지 않으니 모델은 'thew'에서 'e'/'h'로 답함. **CoT step accuracy 한계는 working memory 부족이 아니라 표현이 발음에 묶여 있어서** (ortho-phonetic mapping bias).
+
+**관찰 4 — 24%의 수학적 분해가 맞아떨어짐**
+
+```
+한 단어 step 정확도 (가중평균)  ≈ 82%
+4단어 모두 step 정답 (독립 가정) ≈ 0.82⁴ ≈ 45%
+4 step 정답 → concat 성공률    ≈ 50~55%
+최종 정답률 예측              ≈ 24%   ✓
+```
+
+Working memory 부족(`anagram` 6%)은 부수적이고, 압도적으로 글자별 step accuracy가 bottleneck.
+
+**가설 — 32B의 67% 점프는 글자별 인식 편차의 균등화**
+0.95⁴ × 80% ≈ 65% → 32B 67%와 거의 일치. **emergent의 정체는 working memory 확장이 아니라 h·w·b·r 같은 발음 영향 받는 글자도 철자 그대로 답하게 되는 representation 분리** 일 가능성. (32B raw로 같은 글자별 표를 뽑으면 직접 검증 가능.)
+
+→ 결국 last_letter의 emergent ability는 reasoning 능력의 emergence가 아니라 **orthographic representation을 phonetic prior로부터 분리하는 능력의 emergence**로 해석됩니다.
+
 ---
 
 ## 7. 한계 (정직하게)
