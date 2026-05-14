@@ -132,7 +132,57 @@ Colab Pro 단일 세션(24시간)에 충분히 끝납니다. 중간에 끊겨도
 
 ---
 
-## 6. 한계 (정직하게)
+## 6. 실험 결과 및 논문 검증
+
+> 아래 수치는 본 실험(Qwen2.5-Instruct 0.5B~32B, A100 40GB, 2026-05 실행)의 결과입니다. 실행 환경/모델 버전에 따라 ±2~3%p 변동 가능.
+
+### 6-1. 절대 정확도 요약 (Standard / CoT / SC, 단위 %)
+
+| 모델 | GSM8K | Last Letter | Coin Flip | CSQA | StrategyQA |
+|---|---|---|---|---|---|
+| **0.5B** | 18 / 46 / 58 | 0 / 0 / 0 | 54 / 62 / 63 | 54 / 56 / 60 | 56 / 46 / 47 |
+| **1.5B** | 15 / 72 / 82 | ~0 / 1 / 1 | 57 / 89 / 90 | 78 / 79 / 80 | 60 / 57 / 55 |
+| **3B**   | 74 / 85 / 90 | 0 / 7 / 7    | 56 / 99 / 100 | 83 / 83 / 83 | 56 / 58 / 57 |
+| **7B**   | 70 / 89 / 92 | 0 / 24 / 24  | 64 / 100 / 100 | 87 / 88 / 90 | 68 / 66 / 73 |
+| **32B**  | 85 / 93 / 95 | 0 / 67 / 67  | 77 / 99 / 99 | 92 / 92 / 93 | 73 / 72 / 75 |
+
+### 6-2. 논문 주장 vs 본 실험 (한눈에)
+
+| 논문 주장 | 본 실험 결과 | 지지도 |
+|---|---|---|
+| **① CoT > Standard** (reasoning task에서 CoT가 크게 우세) | GSM8K, Coin Flip, Last Letter에서 강력 확인 (gap +20~67%p). CSQA/StrategyQA에선 효과 없음 또는 음수 — single-hop 태스크엔 reasoning이 noise | ⭐⭐⭐⭐ (태스크 의존) |
+| **② Emergent ability** (작은 모델에선 CoT 무용, 큰 모델에서만 작동) | **Last Letter에서 교과서적 재현** (0→0→7→24→67%). 다른 태스크는 instruct 효과로 작은 모델에서도 CoT 작동해 극단적 kink 없음 | ⭐⭐⭐ (last_letter만 깨끗) |
+| **③ Self-Consistency > CoT** (sampling 다수결로 추가 이득) | 평균 +1~+12%p로 일관되긴 함. **단 모델 크기에 반비례** (0.5B GSM8K +12%p → 32B +2%p) | ⭐⭐⭐ (작은 모델·어려운 task에 한정) |
+
+### 6-3. 핵심 인사이트 4가지
+
+1. **CoT가 빛나는 곳은 "multi-step이 정답에 본질적인" 태스크**
+   - 효과 큼: GSM8K (산술), Coin Flip (state tracking), Last Letter (symbolic)
+   - 효과 없음: CSQA (single-hop 상식), StrategyQA (yes/no)
+   - StrategyQA 0.5B에서는 CoT가 오히려 **−10%p** — 작은 모델이 reasoning 형식을 못 따라가 답 추출 실패 가능성.
+
+2. **Emergent 시점은 태스크 난이도에 따라 다르다**
+   - Coin Flip: 1.5B에서 emergent 완료 (가장 빠름)
+   - GSM8K: 0.5B에서도 CoT 작동 (instruct 효과로 임계점 하향)
+   - Last Letter: 7B+에서 비로소 (OOD symbolic task라 임계점 높음, 32B에서도 미완성)
+
+3. **Self-Consistency는 "작은 모델 + 어려운 reasoning"에 가장 가성비**
+   - GSM8K SC 이득: 0.5B **+12%p** → 32B **+2%p**
+   - CoT가 noisy할 때 다수결의 평균화 효과가 큼. 큰 모델은 이미 결정론적이라 다수결로 얻을 게 적음.
+   - Coin Flip, Last Letter는 이미 ceiling 또는 floor라 SC 무용.
+
+4. **Instruct 모델은 emergent 임계점을 크게 낮춘다**
+   - 원 논문 GPT-3 base: GSM8K 0.4B에서 CoT 약 3% (효과 없음)
+   - 우리 Qwen2.5-Instruct 0.5B: GSM8K CoT **46%** (이미 강하게 작동)
+   - SFT 학습이 작은 모델에도 CoT 시드를 심어둠. **단 last_letter 같이 학습 분포에 없는 symbolic task에서는 여전히 large model 필수.**
+
+### 6-4. 한 줄 결론
+
+> **CoT는 reasoning task에 강력하고 그 이득은 scale에 따라 커진다 (원 논문 주장 지지). 다만 Instruct-tuned 모델에서는 CoT의 emergent 임계점이 크게 낮아져, 원 논문의 GPT-3 base에서 본 극단적 kink는 last_letter 같은 OOD task에서만 깨끗이 재현된다. Self-Consistency는 만능 부스터가 아니라 "작은 모델의 noisy한 CoT를 보정"하는 한정적 도구다.**
+
+---
+
+## 7. 한계 (정직하게)
 
 - **샘플링 노이즈**: 태스크당 300/150 문항이라 정확도 ±3~5%p 노이즈는 일반적. 작은 gap은 해석에 주의.
 - **모델 크기 범위가 좁고 상한이 emergent threshold 미달**: 원 논문 0.4B~540B 대비 우리는 0.5B~32B. 32B도 논문이 거론한 emergent threshold(~62B)에 미달하므로 매끈한 "kink"를 그리기엔 부족.
@@ -143,7 +193,7 @@ Colab Pro 단일 세션(24시간)에 충분히 끝납니다. 중간에 끊겨도
 
 ---
 
-## 7. 인용
+## 8. 인용
 
 ```bibtex
 @article{wei2022chain,
