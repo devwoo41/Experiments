@@ -1,0 +1,14 @@
+langgraph>=0.2.50
+langchain-core>=0.3.20
+google-generativeai>=0.8.3
+arxiv>=2.1.3
+requests>=2.32.0
+pydantic>=2.9.0
+python-dotenv>=1.0.1
+pyyaml>=6.0.2
+scikit-learn>=1.5.0
+numpy>=1.26.0
+tqdm>=4.66.0
+tenacity>=9.0.0
+sentence-transformers>=3.0.0
+rapidfuzz>=3.6.0

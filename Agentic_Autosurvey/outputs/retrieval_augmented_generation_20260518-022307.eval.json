@@ -1,0 +1,88 @@
+{
+  "topic": "retrieval augmented generation",
+  "generated_at": "20260518-022307",
+  "search_queries": [
+    "retrieval augmented generation",
+    "retrieval augmented generation",
+    "RAG models",
+    "document grounded generation",
+    "retrieval enhanced generation"
+  ],
+  "n_papers_kept": 20,
+  "clusters": [
+    {
+      "id": 0,
+      "label": "RAG System Innovations and Applications",
+      "summary": "This cluster of papers focuses on advancing Retrieval-Augmented Generation (RAG) systems by addressing their limitations and extending their capabilities. They introduce novel architectures and techniques, such as context compression and improved contextual awareness, to enhance RAG's efficiency and accuracy. Furthermore, these works tackle challenges like multi-hop queries and apply RAG to specific domains like recommender systems, showcasing its potential for more complex and specialized applications.",
+      "size": 4
+    },
+    {
+      "id": 1,
+      "label": "RAG for Medical and Healthcare LLMs",
+      "summary": "This cluster of papers focuses on the application and evaluation of Retrieval-Augmented Generation (RAG) for Large Language Models (LLMs) specifically within the healthcare and medical domain. They address critical challenges of LLMs in clinical settings, such as mitigating hallucinations, incorporating up-to-date medical knowledge, and improving diagnostic accuracy and safety. The research includes systematic reviews, benchmarking RAG systems, and developing enhanced RAG models to ensure effective and reliable use in medical applications.",
+      "size": 5
+    },
+    {
+      "id": 2,
+      "label": "RAG Fundamentals and Evaluation",
+      "summary": "This collection of papers introduces Retrieval Augmented Generation (RAG) as a crucial technique to enhance large language models, especially for knowledge-intensive tasks, by integrating external knowledge to mitigate issues like hallucination. They explore foundational RAG architectures, propose advanced retrieval strategies like active retrieval, and highlight the critical need for robust evaluation frameworks to assess RAG pipeline performance. Together, these works cover the core concepts, improvements, and assessment methodologies central to RAG.",
+      "size": 3
+    },
+    {
+      "id": 3,
+      "label": "Security and Privacy of RAG",
+      "summary": "These papers collectively explore various security and privacy vulnerabilities inherent in Retrieval-Augmented Generation (RAG) systems. They detail different attack vectors, including knowledge corruption through poisoned documents, denial-of-service jamming using blocker documents, and novel methods to exploit privacy issues when RAG handles sensitive data. This cluster highlights the critical need for robust defense mechanisms to ensure the reliability and trustworthiness of RAG applications.",
+      "size": 3
+    },
+    {
+      "id": 4,
+      "label": "Graph Retrieval-Augmented Generation",
+      "summary": "This cluster focuses on Retrieval-Augmented Generation (RAG) specifically applied to graph-structured data. These papers explore how to enable Large Language Models (LLMs) to effectively leverage complex, interconnected information from graphs, moving beyond traditional RAG systems that rely on flat text documents. The methods discussed integrate graph neural networks (GNNs) and graph knowledge bases with LLMs to enhance tasks such as question answering and domain-specific customization over graph data.",
+      "size": 2
+    },
+    {
+      "id": 5,
+      "label": "Retrieval-Augmented Generation Surveys",
+      "summary": "These papers are comprehensive survey articles introducing Retrieval-Augmented Generation (RAG) as a pivotal paradigm. They collectively highlight RAG's role in addressing critical challenges faced by Large Language Models and AI-Generated Content, including hallucination, outdated knowledge, and the need for transparent, up-to-date information. The surveys detail how RAG integrates external knowledge sources to enhance accuracy, credibility, and real-time responsiveness across diverse applications.",
+      "size": 3
+    }
+  ],
+  "n_references_cited": 20,
+  "evaluation": {
+    "dimensions": {
+      "coverage": 7.0,
+      "organization": 9.0,
+      "relevance": 9.5,
+      "synthesis": 8.0,
+      "critical_analysis": 8.5,
+      "factual_accuracy": 2.0,
+      "citation_quality": 1.0,
+      "clarity": 9.0,
+      "novelty_discussion": 8.0,
+      "depth": 7.0,
+      "balance": 8.5,
+      "future_directions": 9.0
+    },
+    "overall": 7.208,
+    "rationale": {
+      "coverage": "The survey covers a good breadth of relevant sub-topics, including emerging areas like Graph RAG and security, but the limited number of cited references (20) restricts the depth and comprehensiveness expected of a full survey.",
+      "organization": "The survey is logically structured with a clear abstract, introduction, well-defined sections, and a concluding summary, providing a coherent flow for the reader.",
+      "relevance": "All discussed content and cited literature are highly relevant to the topic of Retrieval-Augmented Generation, with no irrelevant tangents.",
+      "synthesis": "The survey effectively synthesizes information across papers, identifying common themes, challenges, and evolving paradigms rather than merely enumerating individual works.",
+      "critical_analysis": "The survey provides strong critical analysis, highlighting limitations, trade-offs, and open problems within each sub-topic and across the field.",
+      "factual_accuracy": "While general RAG concepts are accurately described, the inclusion of multiple future-dated arXiv papers (e.g., arxiv:2501.xxxx) and a 2025 DOI makes specific claims unverifiable and severely undermines the factual credibility of the literature review.",
+      "citation_quality": "Citations are frequent and generally well-placed, but the presence of several future-dated (2025) arXiv and DOI references is a critical flaw, indicating a lack of verifiable sources and compromising academic rigor.",
+      "clarity": "The writing is clear, concise, and maintains an appropriate academic tone throughout, making the content easy to understand.",
+      "novelty_discussion": "The survey effectively discusses emerging trends like Agentic RAG and highlights its distinct structural approach, contributing to the novelty discussion.",
+      "depth": "The survey provides reasonable technical depth for the selected topics and papers, but the overall limited number of citations prevents a truly in-depth exploration of the entire RAG landscape.",
+      "balance": "The survey maintains a good balance by addressing core RAG concepts, specialized applications, architectural innovations, and critical challenges like security and evaluation.",
+      "future_directions": "The future directions are concrete, valuable, and well-integrated into both individual sections and the overall conclusion, offering clear paths for further research."
+    }
+  },
+  "logs": [
+    "[Search] 5 queries -> 76 raw hits -> 38 unique -> kept top 20",
+    "[Cluster] 20 papers -> 6 topic clusters (k=6)",
+    "[Writer] 6 sections, 20 cited references",
+    "[Evaluator] overall=7.21/10"
+  ]
+}

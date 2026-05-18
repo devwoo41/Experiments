@@ -1,0 +1,66 @@
+# Agentic AutoSurvey configuration — faithful to arXiv:2509.18661
+# Only the LLM backbone is a deviation (Gemini instead of Claude Sonnet/Opus 4.1),
+# per explicit user choice. All other defaults match the paper.
+
+models:
+  # Paper §3.1: Claude Sonnet 4.1 for search, Claude Opus 4.1 for remaining agents.
+  # Deviation by user request: Gemini Flash for search, Gemini Pro for the rest.
+  writer: gemini-2.5-pro
+  light:  gemini-2.5-flash
+  temperature_writer: 0.4
+  temperature_light: 0.2
+
+search:
+  # Paper §2.2.1 + K.1
+  sources: [arxiv, semantic_scholar]
+  num_query_expansions: 25         # paper: "20-30 diverse queries"
+  per_query_limit: 30
+  target_papers: 125               # paper: "Target 100-150 papers"
+  max_papers: 150
+  title_similarity_threshold: 90   # paper: "90% title similarity threshold"
+  year_min: 2020                   # paper: "2020-2025"
+  year_max: 2025
+
+clustering:
+  # Paper §2.2.2 + K.2
+  embedding_model: sentence-transformers/all-MiniLM-L6-v2  # paper-specified
+  k_min: 5                         # paper: "Test K values from 5 to 15"
+  k_max: 15
+  outlier_confidence_threshold: 0.2  # papers below this confidence flagged as outliers
+  tfidf_top_terms: 5               # # of top TF-IDF terms used for cluster name
+
+writer:
+  # Paper §2.2.3 + K.3
+  target_word_count_min: 8000      # paper: "Target 8,000-12,000 words"
+  target_word_count_max: 12000
+  min_citation_rate: 0.80          # paper: "Cite at least 80% of papers"
+  citation_format: "[Author, Year]"  # paper-mandated format
+  abstract_words_min: 200
+  abstract_words_max: 300
+  include_cross_cutting: true      # paper: "Cross-cutting analysis section"
+  include_future_directions: true
+
+evaluator:
+  # Paper §2.2.4, Table 4 (Appendix F), K.4 — exact 12 dimensions with weights
+  dimensions:
+    # Core Quality (60%) — 15% each
+    - {name: citation_coverage,  category: core,    weight: 0.15}
+    - {name: accuracy,           category: core,    weight: 0.15}
+    - {name: synthesis_quality,  category: core,    weight: 0.15}
+    - {name: organization,       category: core,    weight: 0.15}
+    # Writing Quality (20%) — 5% each
+    - {name: readability,        category: writing, weight: 0.05}
+    - {name: academic_rigor,     category: writing, weight: 0.05}
+    - {name: clarity,            category: writing, weight: 0.05}
+    - {name: coherence,          category: writing, weight: 0.05}
+    # Content Depth (20%) — 5% each
+    - {name: comprehensiveness,  category: depth,   weight: 0.05}
+    - {name: critical_analysis,  category: depth,   weight: 0.05}
+    - {name: novelty_insights,   category: depth,   weight: 0.05}
+    - {name: future_directions,  category: depth,   weight: 0.05}
+  max_score: 10
+  category_weights: {core: 0.60, writing: 0.20, depth: 0.20}
+
+output:
+  format: latex
+  outputs_dir: outputs

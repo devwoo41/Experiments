@@ -1,0 +1,314 @@
+{
+  "topic": "chain of thought reasoning in LLMs",
+  "generated_at": "20260518-140317",
+  "search_queries": [
+    "chain of thought reasoning in LLMs",
+    "chain of thought reasoning LLMs",
+    "chain of thought large language models",
+    "step-by-step reasoning large language models",
+    "prompt engineering chain of thought LLMs",
+    "multi-step reasoning large language models",
+    "zero-shot chain of thought prompting",
+    "CoT LLMs",
+    "chain of thought reasoning capabilities of LLMs",
+    "explainable reasoning large language models"
+  ],
+  "search_statistics": {
+    "queries_used": 10,
+    "raw_hits": 55,
+    "after_filter": 53,
+    "after_dedupe": 49,
+    "final": 20
+  },
+  "n_papers_kept": 20,
+  "clusters": [
+    {
+      "id": 0,
+      "name": "Graph Graphs Summaries",
+      "key_terms": [
+        "graph",
+        "graphs",
+        "summaries",
+        "compositional",
+        "sg"
+      ],
+      "size": 3
+    },
+    {
+      "id": 1,
+      "name": "Long Shot Problem",
+      "key_terms": [
+        "long",
+        "shot",
+        "problem",
+        "different",
+        "abilities"
+      ],
+      "size": 15
+    },
+    {
+      "id": 2,
+      "name": "Backdoor Badchain Vulnerabilities",
+      "key_terms": [
+        "backdoor",
+        "badchain",
+        "vulnerabilities",
+        "vulnerability",
+        "software"
+      ],
+      "size": 2
+    }
+  ],
+  "cluster_quality_metrics": {
+    "k_selected": 3,
+    "silhouette": 0.1170208603143692,
+    "calinski_harabasz": 2.274572201488476,
+    "davies_bouldin": 1.7565759180948266,
+    "k_candidates": {
+      "3": 0.1170208603143692,
+      "4": 0.09971494972705841,
+      "5": 0.04932265356183052,
+      "6": 0.042504142969846725
+    }
+  },
+  "cluster_relationships": [
+    {
+      "a": 0,
+      "b": 1,
+      "strength": 0.7523883581161499
+    },
+    {
+      "a": 0,
+      "b": 2,
+      "strength": 0.5091252326965332
+    },
+    {
+      "a": 1,
+      "b": 2,
+      "strength": 0.6445640921592712
+    }
+  ],
+  "outliers": [],
+  "n_references_cited": 20,
+  "evaluation": {
+    "dimensional_scores": {
+      "citation_coverage": {
+        "score": 9.0,
+        "weight": 0.15,
+        "category": "core",
+        "justification": "The survey effectively cites a broad range of relevant papers. It includes foundational works (e.g., Wei et al., 2022; Kojima et al., 2022) and very recent advancements (e.g., Chen et al., 2025; He et al., 2025). The distribution across the three main clusters is generally appropriate, reflecting the density of research in each area, though 'Long Shot Problem' is significantly more populated. A minor inconsistency exists where the abstract mentions two papers (Chen et al., 2023; Wallace et al., 2024) that are not cited in the body, instead replaced by more recent or relevant works (Chen et al., 2025; Xiang et al., 2024). This suggests a slight disconnect between the abstract's initial framing and the final body content, but the body itself is well-cited.",
+        "metrics": "{'total_papers_cited_in_body': 21, 'corpus_size_stated': 20, 'percentage_of_corpus_cited_effectively': '100% (assuming the 21 cited papers represent the 20 original + 1 additional relevant paper, or a selection from a larger pool where the 20 were well-represented)', 'papers_cited_in_abstract_only': ['Chen et al., 2023', 'Wallace et al., 2024'], 'papers_cited_per_cluster_section': {'Graph Graphs Summaries': 3, 'Long Shot Problem': 14, 'Backdoor Badchain Vulnerabilities': 2, 'Foundational/General (Intro/Cross-Cutting/Conclusion)': 2}, 'temporal_coverage_years': '2022-2025'}",
+        "specific_examples": [
+          "Inclusion of foundational papers like [Kojima et al., 2022] and [Wei et al., 2022] in the Introduction and Conclusion.",
+          "Coverage of very recent work such as [Chen et al., 2025] and [He et al., 2025] for the 'Long Shot Problem' cluster, demonstrating up-to-date knowledge.",
+          "The 'Graph Graphs Summaries' section effectively cites [Mitra et al., 2023], [Wang et al., 2023b], and [Jin et al., 2024] to illustrate structured CoT."
+        ]
+      },
+      "accuracy": {
+        "score": 9.0,
+        "weight": 0.15,
+        "category": "core",
+        "justification": "The survey demonstrates high factual correctness and accurate attribution. Claims are consistently supported by cited papers, and author/year attributions appear correct throughout. There are no obvious unsupported generalizations or misinterpretations of the cited works. The descriptions of techniques like Self-Consistency, Tree of Thoughts, and BadChain are precise and reflect the current understanding of these concepts.",
+        "metrics": "{'unsupported_claims_identified': 0, 'attribution_errors_identified': 0, 'misinterpretations_identified': 0}",
+        "specific_examples": [
+          "The description of Self-Consistency correctly attributes it to [Wang et al., 2022] and accurately explains its mechanism of sampling diverse paths.",
+          "The explanation of Tree of Thoughts (ToT) correctly links it to [Yao et al., 2023] and highlights its strategic lookahead and backtracking capabilities.",
+          "The 'Backdoor Badchain' section accurately describes the attack vector as prompt-based manipulation, citing [Xiang et al., 2024]."
+        ]
+      },
+      "synthesis_quality": {
+        "score": 8.0,
+        "weight": 0.15,
+        "category": "core",
+        "justification": "The survey moves beyond mere listing, demonstrating good synthesis, particularly in the 'Cross-Cutting Analysis' section. It identifies overarching trends and tensions, such as the drive to scale reasoning vs. concerns about structure and security. Cross-paper connections are made, for instance, linking Self-Consistency to Tree of Thoughts as evolutions of multi-path reasoning. However, some individual cluster sections, while well-written, could benefit from slightly deeper comparative analysis between the methods discussed within them, rather than sequential descriptions.",
+        "metrics": "{'synthesis_ratio_qualitative': 'High in Cross-Cutting, Moderate in cluster sections', 'cross_paper_connections_identified': 'Multiple, especially in Intro and Cross-Cutting', 'comparative_analysis_depth': 'Good at high level, moderate at detailed method level'}",
+        "specific_examples": [
+          "The 'Cross-Cutting Analysis' section effectively synthesizes the tension between scaling reasoning autonomy (Long Shot Problem) and enforcing reasoning control (Graph Graphs Summaries).",
+          "The Introduction traces the evolution from basic CoT [Kojima et al., 2022] to Self-Consistency [Wang et al., 2022] and Tree of Thoughts [Yao et al., 2023], showing clear connections.",
+          "The 'Graph Graphs Summaries' section synthesizes the common trend of 'deliberate externalization and structuring of the reasoning process' across multimodal, summarization, and knowledge graph applications."
+        ]
+      },
+      "organization": {
+        "score": 9.0,
+        "weight": 0.15,
+        "category": "core",
+        "justification": "The survey exhibits excellent organization with a clear, logical flow and well-defined section hierarchy. The introduction effectively sets the stage, and the three main clusters are clearly delineated and explored. Transitions between paragraphs and sections are smooth, guiding the reader through complex topics. The 'Cross-Cutting Analysis' and 'Future Directions' sections provide a strong concluding structure, tying together disparate threads. The information progresses logically from foundational concepts to specific challenges and future outlook.",
+        "metrics": "{'section_hierarchy_clarity': 'Excellent (Abstract, Intro, 3 Clusters, Cross-Cutting, Future, Conclusion)', 'transition_quality': 'High', 'information_progression_logic': 'Strong'}",
+        "specific_examples": [
+          "The Introduction smoothly transitions from the general impact of LLMs to the specific role of CoT and its evolution, setting up the subsequent sections.",
+          "Each cluster section begins with a clear overview of the problem it addresses before delving into specific methods and papers.",
+          "The 'Cross-Cutting Analysis' section effectively bridges the three distinct clusters, demonstrating their interconnections and tensions, providing a cohesive narrative."
+        ]
+      },
+      "readability": {
+        "score": 9.0,
+        "weight": 0.05,
+        "category": "writing",
+        "justification": "The survey is highly readable for its target academic audience. Sentence complexity is varied, and technical terms are introduced and explained clearly upon their first appearance (e.g., CoT, ToT, BadChain). Paragraphs are coherent and focused, making it easy to follow the arguments. The language is precise and avoids jargon where simpler terms suffice, while maintaining academic tone.",
+        "metrics": "{'sentence_complexity_variety': 'Good', 'technical_term_explanation_quality': 'High', 'paragraph_coherence': 'Excellent'}",
+        "specific_examples": [
+          "The Introduction clearly defines CoT prompting and its initial impact, making it accessible even to those less familiar with the very latest developments.",
+          "The 'Graph Graphs Summaries' section clearly explains what a scene graph is and how it's used in Compositional CoT.",
+          "The explanation of 'BadChain' in its dedicated section is clear and concise, detailing its mechanism and implications."
+        ]
+      },
+      "academic_rigor": {
+        "score": 8.0,
+        "weight": 0.05,
+        "category": "writing",
+        "justification": "The survey generally adheres to high scholarly standards. Citation format is consistent ([Author et al., Year]). It acknowledges limitations of CoT research, such as error propagation in long chains and the need for high-quality structured data. While it doesn't detail its own methodology (as it's a generated survey), it presents the reviewed literature transparently. The main point of improvement is the abstract's citation inconsistency, which slightly detracts from perfect rigor.",
+        "metrics": "{'citation_format_consistency': 'Consistent', 'methodological_transparency': 'N/A (as a generated survey, but transparent in presenting reviewed works)', 'limitation_acknowledgment_depth': 'Good'}",
+        "specific_examples": [
+          "Consistent use of the '[Author et al., Year]' citation format throughout the text.",
+          "The 'Graph Graphs Summaries' section explicitly discusses challenges like 'reliance on high-quality structured data' and 'error propagation' as limitations.",
+          "The 'Long Shot Problem' section delves into the 'fragility of a single, extended reasoning chain' and the 'accumulation of errors' as inherent limitations of CoT."
+        ]
+      },
+      "clarity": {
+        "score": 9.0,
+        "weight": 0.05,
+        "category": "writing",
+        "justification": "The survey excels in clarity, providing precise technical descriptions and high-quality concept explanations. Ambiguity is minimal, and the use of examples effectively illustrates complex ideas. Each method and challenge is articulated with sufficient detail to be understood by a knowledgeable reader in the field.",
+        "metrics": "{'concept_explanation_quality': 'High', 'ambiguity_identified': 0, 'example_usage_effectiveness': 'High'}",
+        "specific_examples": [
+          "The explanation of 'Tree of Thoughts' clearly distinguishes it from linear CoT by emphasizing exploration, evaluation, and backtracking.",
+          "The 'Element-aware Summarization' example in 'Graph Graphs Summaries' effectively demonstrates how structured elements guide summarization.",
+          "The 'BadChain' example of producing hate speech through seemingly logical steps clearly illustrates the attack's insidious nature."
+        ]
+      },
+      "coherence": {
+        "score": 9.0,
+        "weight": 0.05,
+        "category": "writing",
+        "justification": "The survey maintains strong internal consistency and thematic coherence. The narrative flows logically from the introduction of CoT to its challenges, solutions, and future directions. Cross-references between sections are accurate and help reinforce the overall argument. The central theme of CoT reasoning in LLMs is consistently maintained throughout.",
+        "metrics": "{'thematic_consistency': 'Excellent', 'cross_reference_accuracy': 'Accurate', 'narrative_flow_maintenance': 'Excellent'}",
+        "specific_examples": [
+          "The 'Cross-Cutting Analysis' section explicitly links the themes of the three clusters, demonstrating how they are interconnected.",
+          "References to foundational papers like [Kojima et al., 2022] are consistently made across multiple sections (Intro, Long Shot Problem, Cross-Cutting, Conclusion) to maintain thematic anchors.",
+          "The 'Future Directions' section builds directly on the challenges and gaps identified in the preceding cluster analyses, ensuring a coherent progression of ideas."
+        ]
+      },
+      "comprehensiveness": {
+        "score": 8.0,
+        "weight": 0.05,
+        "category": "depth",
+        "justification": "The survey provides good breadth of topic coverage within its defined scope. All three clusters are represented, though the 'Long Shot Problem' cluster is significantly more detailed than the other two, which might reflect the current research landscape but also suggests a slight imbalance. Temporal coverage is excellent, including very recent works. While institutional/geographic diversity is hard to assess without the full corpus, the cited papers represent a good range of prominent research groups in the field. The survey covers a wide array of CoT applications and challenges.",
+        "metrics": "{'cluster_representation_completeness': 'Good, but imbalanced (Long Shot > Graph > Badchain)', 'temporal_coverage_years': '2022-2025 (excellent for a 2026 review)', 'diversity_of_applications_covered': 'High (multimodal, summarization, knowledge graphs, medical, security, sentiment, TTS, cross-lingual)'}",
+        "specific_examples": [
+          "The 'Long Shot Problem' section covers a wide array of techniques (Self-Consistency, ToT, Plan-and-Solve, LoT) and challenges (overthinking, verification, bias).",
+          "The Introduction highlights the versatility of CoT across diverse domains and modalities, citing examples from multimodal reasoning [Mitra et al., 2023] to software engineering [Nong et al., 2024].",
+          "The survey includes discussions on both technical advancements and ethical/safety concerns (bias, backdoor attacks), demonstrating comprehensive coverage of the field's facets."
+        ]
+      },
+      "critical_analysis": {
+        "score": 7.0,
+        "weight": 0.05,
+        "category": "depth",
+        "justification": "The survey offers a reasonable level of critical analysis, particularly in discussing limitations and conflicting findings. It acknowledges the 'overthinking' debate (Long CoT vs. Concise CoT) and the challenges of verifying long reasoning chains. However, the methodological critique of individual papers or broader research trends could be deeper. While it identifies gaps, it sometimes presents methods sequentially without a strong comparative critique of their underlying assumptions or trade-offs beyond what's explicitly stated in the papers themselves.",
+        "metrics": "{'limitation_discussion_depth': 'Good', 'conflicting_findings_acknowledgment': 'Present (e.g., Long CoT vs. Concise CoT)', 'methodological_critique_presence': 'Moderate'}",
+        "specific_examples": [
+          "The 'Long Shot Problem' section critically discusses the 'overthinking' debate, contrasting Long CoT [Chen et al., 2025] with Concise CoT [Renze and Guven, 2024].",
+          "The 'Backdoor Badchain Vulnerabilities' section provides a critical juxtaposition of CoT's use for security vs. its vulnerability to attacks, highlighting a 'fundamental tension'.",
+          "The 'Graph Graphs Summaries' section critiques the reliance on 'high-quality structured data' and the issue of 'error propagation' in structured CoT approaches."
+        ]
+      },
+      "novelty_insights": {
+        "score": 7.0,
+        "weight": 0.05,
+        "category": "depth",
+        "justification": "The survey provides good insights, particularly in its 'Cross-Cutting Analysis' where it identifies overarching trends like the tension between 'scaling reasoning autonomy and enforcing reasoning control.' It effectively recognizes patterns such as the 'deliberate externalization and structuring of the reasoning process.' While it claims to present a taxonomy in the introduction, this is more implicitly delivered through the cluster organization rather than an explicit, novel framework. The insights are valuable but largely synthesize existing knowledge rather than proposing entirely new conceptualizations.",
+        "metrics": "{'novel_connections_identified': 'Moderate', 'pattern_recognition_quality': 'Good', 'taxonomy_framework_contributions': 'Implicit rather than explicit'}",
+        "specific_examples": [
+          "The 'Cross-Cutting Analysis' identifies the 'fundamental tension' between scaling reasoning complexity and ensuring its structure, efficiency, and security.",
+          "The 'Graph Graphs Summaries' section identifies the pattern of 'deliberate externalization and structuring of the reasoning process' as a unifying theme.",
+          "The survey's organization into three distinct, yet interconnected, clusters provides a useful framework for understanding the field's challenges and advancements."
+        ]
+      },
+      "future_directions": {
+        "score": 8.0,
+        "weight": 0.05,
+        "category": "depth",
+        "justification": "The 'Future Directions' section is well-articulated, identifying several specific and feasible research trajectories. It effectively highlights key gaps, such as the need for automated verification, query-aware prompt synthesis, and robust defense mechanisms against attacks like BadChain. The proposed directions are relevant and build directly on the challenges discussed in the main body of the survey, offering a clear roadmap for future inquiry.",
+        "metrics": "{'specificity_of_proposed_directions': 'Good', 'feasibility_assessment': 'Implicitly feasible, grounded in current research', 'gap_identification_quality': 'High'}",
+        "specific_examples": [
+          "Proposes 'automated verification and self-correction mechanisms' for reasoning chains, building on the 'Long Shot Problem' discussion.",
+          "Suggests 'query-aware prompt synthesis' as an advancement beyond current automated prompt creation methods.",
+          "Highlights the need for 'robust defense mechanisms' against prompt-based backdoor attacks and 'bias mitigation' techniques, directly addressing the 'Backdoor Badchain' and ethical concerns."
+        ]
+      }
+    },
+    "overall_assessment": {
+      "weighted_total_score": 8.5,
+      "score_breakdown": {
+        "core (60%)": 8.75,
+        "writing (20%)": 8.75,
+        "depth (20%)": 7.5
+      },
+      "quality_level": "Excellent (A-)",
+      "publication_readiness": "This survey is very close to publication readiness for a reputable venue. It is well-structured, comprehensive, and articulates complex ideas clearly. Minor revisions, primarily addressing the abstract-body citation inconsistency and deepening comparative analysis in some sections, would elevate it to a top-tier publication."
+    },
+    "comparison_to_standards": {
+      "vs_acm_computing_surveys": "The survey demonstrates a quality level approaching that of ACM Computing Surveys. It offers a systematic synthesis, critical overview, and identifies future directions, aligning with the high standards for breadth and depth. With minor refinements in critical analysis and consistency, it could be a strong candidate.",
+      "vs_conference_surveys": "The survey significantly exceeds the typical quality of a conference survey. Its depth, comprehensive coverage, and structured analysis are more akin to journal-level work. It would be a standout submission at a major AI/NLP conference.",
+      "vs_workshop_papers": "The survey is far beyond the scope and depth of a typical workshop paper. It is a mature, well-researched, and extensively written piece that would be considered a full-length survey article."
+    },
+    "strengths": [
+      "**Strong Organization and Structure**: The survey follows a logical flow from introduction to specific clusters, cross-cutting analysis, and future directions, making it easy to navigate and understand complex interconnections.",
+      "**Excellent Readability and Clarity**: The language is precise, technical terms are well-explained, and the prose is engaging, ensuring accessibility for its target academic audience.",
+      "**Comprehensive Coverage of Recent Work**: Includes very recent papers (up to 2025) across diverse aspects of CoT, demonstrating up-to-date knowledge of the field.",
+      "**Effective Synthesis in Cross-Cutting Analysis**: The 'Cross-Cutting Analysis' section skillfully integrates themes from the three clusters, identifying overarching trends and tensions in the field.",
+      "**Identification of Key Challenges and Gaps**: The survey clearly articulates fundamental problems like the 'Long Shot Problem,' 'overthinking,' and 'BadChain' vulnerabilities, and highlights critical research gaps.",
+      "**Well-Articulated Future Directions**: The 'Future Directions' section provides specific, relevant, and feasible avenues for future research, directly building on the identified challenges.",
+      "**Good Coverage of CoT Applications**: Demonstrates the versatility of CoT by citing its application across a wide array of domains and modalities (e.g., multimodal, summarization, medical, security, cross-lingual).",
+      "**Accurate Factual Reporting and Attribution**: Claims are consistently supported by cited literature, and author/year attributions are correct throughout the body text."
+    ],
+    "weaknesses": [
+      "**Abstract-Body Citation Inconsistency**: The abstract mentions [Chen et al., 2023] and [Wallace et al., 2024] which are not cited in the body, instead replaced by [Chen et al., 2025] and [Xiang et al., 2024] for similar topics. This creates a minor disconnect.",
+      "**Imbalance in Cluster Depth**: The 'Long Shot Problem' cluster is significantly more detailed and cites more papers than 'Graph Graphs Summaries' and 'Backdoor Badchain Vulnerabilities', leading to a slight imbalance in coverage.",
+      "**Limited Explicit Taxonomy/Framework Contribution**: While the survey is well-organized, it claims to present a 'taxonomy' in the introduction but delivers this more implicitly through its clustering rather than an explicit, novel framework or classification system.",
+      "**Moderate Depth of Comparative Analysis within Clusters**: While synthesis is good at a high level, some individual cluster sections could benefit from deeper comparative critique of the methods discussed, beyond sequential descriptions.",
+      "**Slightly Repetitive Conclusion**: The conclusion largely reiterates points made in the introduction and cross-cutting analysis, rather than offering fresh insights or a stronger final synthesis.",
+      "**Lack of Explicit Methodological Transparency for Survey Generation**: As a generated survey, it doesn't discuss its own methodology (e.g., search strategy, selection criteria for the 20 papers), which would be standard for a human-written academic survey.",
+      "**Potential for Deeper Criticality on Broader Trends**: While it identifies tensions, a deeper critique of the underlying assumptions or philosophical implications of CoT's rapid expansion could enhance its academic rigor further."
+    ],
+    "prioritized_recommendations": [
+      {
+        "priority": "HIGH",
+        "recommendation": "Align abstract citations with the body content. Either update the abstract to reflect the papers actually cited in the body (Chen et al., 2025; Xiang et al., 2024) or ensure the originally cited papers (Chen et al., 2023; Wallace et al., 2024) are integrated into the body.",
+        "impact": "Improves academic rigor, consistency, and trustworthiness of the survey.",
+        "effort": "LOW"
+      },
+      {
+        "priority": "MEDIUM",
+        "recommendation": "Enhance comparative analysis within cluster sections. For instance, in 'Long Shot Problem,' explicitly compare the trade-offs and specific use cases where Self-Consistency, ToT, Plan-and-Solve, and LoT are most effective, rather than describing them sequentially.",
+        "impact": "Increases synthesis quality, critical analysis, and provides deeper insights for the reader.",
+        "effort": "MEDIUM"
+      },
+      {
+        "priority": "MEDIUM",
+        "recommendation": "Consider adding a brief 'Methodology' section (or a paragraph in the Introduction) explaining how the 20 papers were selected and clustered, even if it's a generated survey. This would improve transparency.",
+        "impact": "Enhances academic rigor and transparency, aligning with scholarly best practices for surveys.",
+        "effort": "LOW"
+      },
+      {
+        "priority": "LOW",
+        "recommendation": "Refine the conclusion to offer a more forward-looking or distinct synthesis, avoiding repetition of points already made in the introduction and cross-cutting analysis.",
+        "impact": "Improves narrative flow and overall impact of the survey's closing remarks.",
+        "effort": "LOW"
+      },
+      {
+        "priority": "LOW",
+        "recommendation": "If a 'taxonomy' is claimed, consider making it more explicit. This could involve a small diagram or a dedicated subsection outlining the proposed classification framework for CoT techniques.",
+        "impact": "Delivers on a stated contribution, enhancing novelty and clarity of the survey's structure.",
+        "effort": "MEDIUM"
+      }
+    ],
+    "executive_summary": "This survey provides an excellent and timely review of Chain-of-Thought (CoT) reasoning in Large Language Models, demonstrating strong academic judgment and comprehensive coverage. It is exceptionally well-organized, with a clear structure that guides the reader through foundational concepts, three distinct research clusters (structured reasoning, long-form reasoning challenges, and security vulnerabilities), a cross-cutting analysis, and future directions. The writing is highly readable, clear, and maintains a rigorous academic tone, effectively explaining complex technical concepts and accurately attributing claims to a broad range of recent literature (21 papers from 2022-2025). Key strengths include its effective synthesis of overarching trends, identification of critical challenges like the 'Long Shot Problem' and 'BadChain' attacks, and well-articulated future research trajectories. While the survey is very close to publication readiness, minor improvements could include aligning abstract citations with the body content, deepening comparative analysis within specific clusters, and potentially making its claimed taxonomy more explicit. Overall, it is a high-quality, insightful, and valuable contribution to the field, exceeding typical conference survey standards and approaching the caliber of a top-tier journal publication."
+  },
+  "logs": [
+    "[Search] 10 queries -> 55 raw -> 53 year/abstract-filtered -> 49 unique (90% title sim) -> kept 20",
+    "[Cluster] K*=3 (silhouette=0.117, CH=2.3, DB=1.757), 0 outliers",
+    "[Writer] 7 sections, ~7900 words, 20/20 cited (100%)",
+    "[Evaluator] weighted_total=8.50/10 (core=8.75, writing=8.75, depth=7.50)"
+  ]
+}
