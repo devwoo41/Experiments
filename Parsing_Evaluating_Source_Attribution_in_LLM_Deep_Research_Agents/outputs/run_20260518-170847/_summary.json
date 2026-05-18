@@ -1,0 +1,35 @@
+{
+  "by_cell": {
+    "gemini-2.5-pro|brief": {
+      "n_pairs": 27,
+      "lw_pass": 27,
+      "rc_pass": 21,
+      "fc_pass": 14,
+      "n_citations": 9,
+      "n_attributions": 18,
+      "n_queries": 1,
+      "link_works_pct": 100.0,
+      "relevant_content_pct": 77.8,
+      "fact_check_pct": 51.9
+    }
+  },
+  "by_model": {
+    "gemini-2.5-pro": {
+      "n_pairs": 27,
+      "lw_pass": 27,
+      "rc_pass": 21,
+      "fc_pass": 14,
+      "n_citations": 9,
+      "n_attributions": 18,
+      "n_queries": 1,
+      "link_works_pct": 100.0,
+      "relevant_content_pct": 77.8,
+      "fact_check_pct": 51.9
+    }
+  },
+  "ablation_fact_check_by_depth": {
+    "gemini-2.5-pro": {
+      "brief": 51.9
+    }
+  }
+}

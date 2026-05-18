@@ -1,0 +1,63 @@
+# Source Attribution Evaluation Framework
+# Faithful reimplementation of arXiv:2605.06635
+#   "Cited but Not Verified: Parsing and Evaluating Source Attribution
+#    in LLM Deep Research Agents" (Onweller et al., 2026)
+
+# ---------- Phase 0: Deep Research Agent ----------
+research:
+  # Models tested as "deep research agents" (each produces a markdown report)
+  models:
+    - gemini-2.5-pro
+    - gemini-2.5-flash
+
+  # Paper §3.4: "agent is configured with a system prompt enforcing citation
+  # format requirements and minimum search depth"
+  citation_format: inline_markdown_link   # [text](url) — produced naturally by grounding
+
+  # Prompt-based depth ablation (substitute for paper's tool-call ablation,
+  # since Gemini grounding does not expose direct tool-call count control).
+  # The instruction is injected into the system prompt.
+  depth_levels:
+    brief:     "Perform a brief targeted search using at most 2 unique web sources."
+    moderate:  "Perform moderate research using around 5-10 unique web sources."
+    extensive: "Perform extensive research using many (15+) unique web sources, drilling into details."
+
+  # Per-call generation settings
+  max_output_tokens: 8192
+  temperature: 0.4
+  request_timeout_seconds: 180
+
+# ---------- Phase 1: AST parser ----------
+parser:
+  # Sentence segmentation backend — "nltk" or "regex"
+  segmenter: regex
+  # If a citation appears at the end of a passage, it applies to all preceding
+  # uncited sentences in that passage (paper §3.2)
+  backward_attribution: true
+
+# ---------- Phase 2: Evaluators ----------
+evaluators:
+  # Paper §3.3.2: "source content truncated to 5,000 characters"
+  source_truncation_chars: 5000
+
+  # Paper §3.4: "concurrency limits (10 concurrent agents, 15 concurrent evaluators)
+  # and retry logic (5 retries with 5-second delays)"
+  concurrent_evaluators: 15
+  retries: 5
+  retry_delay_seconds: 5
+
+  # Judge model — paper does not specify (Deviation #6).
+  # We use Flash for binary classification tasks (Relevant Content,
+  # Fact Check) to cut Phase 2 cost ~10x with minimal quality loss.
+  judge_model: gemini-2.5-flash
+  judge_temperature: 0.0    # for reproducibility on a binary judgment task
+
+  # HTTP probe for Link Works (paper §3.3.1)
+  link_works:
+    timeout_seconds: 8
+    user_agent: "Mozilla/5.0 (Source Attribution Eval; +https://arxiv.org/abs/2605.06635)"
+
+# ---------- Output ----------
+output:
+  outputs_dir: outputs
+  pretty_print_json: true

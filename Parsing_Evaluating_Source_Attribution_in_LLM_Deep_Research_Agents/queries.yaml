@@ -1,0 +1,27 @@
+# Test queries for the deep research agent (paper used 130 queries from
+# DeepResearch Bench + BrowseComp; we use a small diverse set for prototyping).
+
+queries:
+  - id: q1_quantum
+    text: "What are the latest practical breakthroughs in error-corrected quantum computing, and which companies have demonstrated logical qubits in 2024-2025?"
+
+  - id: q2_climate
+    text: "How effective have direct air capture (DAC) plants been in 2024-2025? Compare cost per ton, capacity, and energy footprint of the major operating facilities."
+
+  - id: q3_llm_safety
+    text: "What are the most cited red-teaming and jailbreak evaluation benchmarks for large language models published since 2023?"
+
+  - id: q4_drug
+    text: "Which AI-discovered drug candidates have entered Phase II or Phase III clinical trials, and what are their reported efficacy results so far?"
+
+  - id: q5_fusion
+    text: "Summarize the state of nuclear fusion net-energy gain experiments since the NIF 2022 milestone, including ITER updates and private sector progress."
+
+  - id: q6_robotics
+    text: "What are the most significant general-purpose humanoid robot demonstrations in 2024-2025, and how do their reported capabilities compare?"
+
+  - id: q7_chip
+    text: "Compare the architectures and reported MLPerf inference scores of NVIDIA Blackwell, AMD MI325X, and Google TPU v6 (Trillium)."
+
+  - id: q8_biology
+    text: "What organisms or genomes have had their entire wiring or molecular dynamics simulated end-to-end since AlphaFold 3, and what are the limitations?"
